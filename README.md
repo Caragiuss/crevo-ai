@@ -1,4 +1,6 @@
 # Crevo AI
+## Preview
+![Crevo AI Dashboard](Screenshot.png)
 
 Crevo AI is a creator dashboard that helps track content performance, improve engagement, and generate AI-powered content ideas.
 
