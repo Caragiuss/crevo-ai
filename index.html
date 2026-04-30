@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crevo AI</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+  <div class="app-shell">
+
+    <aside class="sidebar">
+
+      <!-- LOGO GOES HERE -->
+      <div class="brand">
+        <img src="logo.png" class="logo-img" />
+        <div class="brand-text">
+          <h1>Crevo AI</h1>
+          <span>Creator dashboard</span>
+        </div>
+      </div>
+
+        <nav class="nav-links">
+          <a href="#dashboard" class="nav-link active" data-target="dashboard">Dashboard</a>
+          <a href="#add-activity" class="nav-link" data-target="add-activity">Add Activity</a>
+          <a href="#ai-tools" class="nav-link" data-target="ai-tools">AI Tools</a>
+          <a href="#security" class="nav-link" data-target="security">Security</a>
+        </nav>
+      </aside>
+
+      <main class="main-content">
+        <header class="page-header">
+          <h2 id="view-title">Dashboard</h2>
+          <p class="tagline">Smart content assistant for creators</p>
+          <p id="activePlatformLabel" class="subtle"></p>
+          <p>Track consistency, optimize engagement, and protect your account.</p>
+        </header>
+
+        <section id="dashboard" class="view active">
+        
+          <article class="card score-hero">
+            <div class="score-copy">
+              <p class="subtle">Account Health Score</p>
+              <h3>Overall account health</h3>
+              <p class="subtle">Your score updates from posting frequency and average likes.</p>
+              <span id="healthLabelHero" class="pill pill-poor">Poor</span>
+            </div>
+            <div class="score-ring-wrap">
+              <div id="scoreRing" class="score-ring" role="img" aria-label="Account health score progress">
+                <div class="score-ring-inner">
+                  <span id="healthScore" class="health-score">0</span>
+                  <span class="score-max">/100</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <div class="cards-grid">
+            <article class="card metric-card">
+              <h3>Followers</h3>
+              <input id="followersInput" type="number" min="0" placeholder="Enter followers" />
+              <button id="saveFollowersBtn" class="btn btn-secondary">Save Followers</button>
+            </article>
+
+            <article class="card metric-card">
+              <h3>Total Posts</h3>
+              <p id="totalPosts" class="metric-value">0</p>
+            </article>
+
+            <article class="card metric-card">
+              <h3>Total Likes</h3>
+              <p id="totalLikes" class="metric-value">0</p>
+            </article>
+
+            <article class="card metric-card">
+              <h3>Total Comments</h3>
+              <p id="totalComments" class="metric-value">0</p>
+            </article>
+
+            <article class="card metric-card">
+              <h3>Avg Comments / Post</h3>
+              <p id="avgCommentsPerPost" class="metric-value">0.0</p>
+            </article>
+          </div>
+
+          <article class="card health-card">
+            <p id="reminderAlert" class="alert hidden">You should post today</p>
+          </article>
+
+          <article class="card insights-card">
+            <h3>AI Insights</h3>
+            <p id="contentRecommendation" class="subtle"></p>
+            <ul id="insightsList" class="list"></ul>
+          </article>
+
+          <article class="card">
+            <h3>Content Performance Analytics</h3>
+            
+
+            <select id="platformFilter">
+              <option value="All">All Platforms</option>
+              <option value="Instagram">Instagram</option>
+              <option value="TikTok">TikTok</option>
+              <option value="Facebook">Facebook</option>
+            </select>
+
+   	  
+ <canvas id="engagementChart"></canvas>
+ <h4 style="margin-top:20px;">Performance Trend</h4>
+<canvas id="trendChart"></canvas>
+            <p id="bestPerformingType" class="subtle">Best performing type: N/A</p>
+            <div id="typeAnalytics" class="activity-list"></div>
+          </article>
+        </section>
+
+        <section id="add-activity" class="view">
+          <article class="card form-card">
+            <h3>Add Activity</h3>
+            <form id="activityForm" class="form-grid">
+              <label>
+                Platform
+                <select id="platform" required>
+                  <option value="">Select platform</option>
+                  <option value="Instagram">Instagram</option>
+                  <option value="TikTok">TikTok</option>
+                  <option value="Facebook">Facebook</option>
+                </select>
+              </label>
+
+              <label>
+                Content Type
+                <select id="postType" required>
+                  <option value="">Select type</option>
+                  <option value="Reel">Reel</option>
+                  <option value="Post">Post</option>
+                  <option value="Story">Story</option>
+                </select>
+              </label>
+
+              <label>
+                Date
+                <input id="date" type="date" required />
+              </label>
+
+              <label>
+                Likes
+                <input id="likes" type="number" min="0" placeholder="e.g. 150" required />
+              </label>
+
+              <label>
+                Comments received
+                <input id="comments" type="number" min="0" placeholder="e.g. 18" required />
+              </label>
+
+              <button class="btn" type="submit">Add Post</button>
+            </form>
+          </article>
+
+          <article class="card">
+            <h3>Activity List</h3>
+            <div id="activityList" class="activity-list"></div>
+          </article>
+        </section>
+
+        <section id="ai-tools" class="view">
+          <article class="card form-card">
+            <h3>AI Content Generator</h3>
+            <div class="inline-controls">
+              <label>
+                Platform
+                <select id="aiPlatform">
+                  <option value="Instagram">Instagram</option>
+                  <option value="TikTok">TikTok</option>
+                  <option value="Facebook">Facebook</option>
+                </select>
+              </label>
+              <button id="generateAiBtn" class="btn">Generate Ideas</button>
+            </div>
+
+            <div class="ai-output-grid">
+              <div>
+                <h4>Post Ideas</h4>
+                <ul id="postIdeas" class="list"></ul>
+              </div>
+              <div>
+                <h4>Captions</h4>
+                <ul id="captions" class="list"></ul>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <section id="security" class="view">
+          <article class="card form-card">
+            <h3>Security Check</h3>
+            <label>
+              Test Password Strength
+              <input id="passwordInput" type="password" placeholder="Type a password" />
+            </label>
+            <p>Password strength: <span id="passwordStrength" class="pill pill-poor">Weak</span></p>
+          </article>
+
+          <article class="card">
+            <h3>Safety Tips</h3>
+            <ul class="list">
+              <li>Enable two-factor authentication (2FA) on all creator accounts.</li>
+              <li>Avoid suspicious links and messages that request login details.</li>
+              <li>Use unique passwords for each platform and rotate them regularly.</li>
+            </ul>
+          </article>
+        </section>
+      </main>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="script.js"></script>
+  </body>
+</html>
